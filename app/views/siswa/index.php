@@ -3,15 +3,14 @@
     <div class="row">
         <div class="col-6">
             <h3>Daftar Siswa</h3>
-
-            <?php foreach( $data['mhs'] as $mhs ) : ?>
-            <ul>
-                <li><?= $mhs['nama']; ?></li>
-                <li><?= $mhs['kelas']; ?></li>
-                <li><?= $mhs['jurusan']; ?></li>
-                <li><?= $mhs['email']; ?></li>
+            <ul class="list-group">
+                <?php foreach( $data['mhs'] as $mhs ) : ?>
+                    <li class="list-group-item  d-flex justify-content-between align-items-start">
+                        <?= $mhs['nama']; ?>
+                        <a href="<?= BASEURL; ?>/siswa/detail/<?= $mhs['id'];?>" class="badge bg-primary">Detail</a>
+                    </li>
+                <?php endforeach; ?>
             </ul>
-            <?php endforeach; ?>
         </div>
     </div>
 
