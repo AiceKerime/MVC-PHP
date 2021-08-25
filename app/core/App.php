@@ -10,9 +10,13 @@ class App{
         $url = $this->parseURL();
         
         //controller
-        if(file_exists('../app/controllers/' . $url[0] . '.php')){
-            $this->controller = $url[0];
-            unset ($url[0]);
+        if(!empty($this->parseURL())){
+            if ( file_exists('../app/controllers/' . $url[0] . '.php')) {
+                $this->controller = $url[0];
+                unset($url[0]);  
+           }
+        }else{
+            $this->controller = 'Home';
         }
 
         require_once '../app/controllers/' . $this->controller . '.php';
@@ -33,7 +37,6 @@ class App{
         }
 
         //Jalankan controller & method, serta kirimkan params
-
         call_user_func_array([$this->controller, $this->method], $this->params);
 
     }
