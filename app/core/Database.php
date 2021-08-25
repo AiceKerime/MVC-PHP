@@ -8,13 +8,14 @@ class Database {
 
     //Mengkoneksikan DB dengan menggunakan PDO(php data object)
     private $dbh; //database handler
-    private $stmt;
+    private $stmt; //statement
 
     public function __construct()
     {
         //data source name
         $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
 
+        //PDO => PHP Data Object
         $option = [
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
@@ -69,5 +70,10 @@ class Database {
     {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function rowCount()
+    {
+        return $this->stmt->rowCount();
     }
 }
