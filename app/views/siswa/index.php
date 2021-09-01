@@ -7,18 +7,20 @@
     </div>
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal">
+            <button type="button" class="btn btn-primary tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal">
                 Tambah Data Siswa
             </button>
             <br><br>
             <h3>Daftar Siswa</h3>
             <ul class="list-group">
                 <?php foreach( $data['mhs'] as $mhs ) : ?>
-                    <li class="list-group-item  d-flex justify-content-between align-items-start">
+                    <li class="list-group-item">
                         <?= $mhs['nama']; ?>
-                        <a href="<?= BASEURL; ?>/siswa/detail/<?= $mhs['id'];?>" class="badge bg-primary">Detail</a>
+                        <a href="<?= BASEURL; ?>/siswa/hapus/<?= $mhs['id'];?>" class="badge bg-danger float-end ms-1" onclick="return confirm('Anda yakin ingin menghapus data ini?');">Hapus</a>
+                        <a href="<?= BASEURL; ?>/siswa/ubah/<?= $mhs['id'];?>" class="badge bg-warning float-end ms-1 tampilModalUbah" data-bs-toggle="modal" data-bs-target="#formModal">Edit</a>
+                        <a href="<?= BASEURL; ?>/siswa/detail/<?= $mhs['id'];?>" class="badge bg-primary float-end ms-1">Detail</a>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -32,7 +34,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="tittleModal">Tambah Data Siswa</h5>
+        <h5 class="modal-title" id="formModalLabel">Tambah Data Siswa</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
